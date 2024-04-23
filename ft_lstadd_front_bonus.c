@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ogrativ <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/15 13:29:53 by ogrativ           #+#    #+#             */
-/*   Updated: 2024/04/15 13:29:56 by ogrativ          ###   ########.fr       */
+/*   Created: 2024/04/15 12:58:03 by ogrativ           #+#    #+#             */
+/*   Updated: 2024/04/15 12:58:05 by ogrativ          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
-Get last element of list
-*/
-t_list	*ft_lstlast(t_list *lst)
-{
-	t_list	*node;
+Prototype:
+	void ft_lstadd_front(t_list **lst, t_list *new);
 
-	if (lst == NULL)
+Parameters:
+	lst: The address of a pointer to the first link of a list.
+
+	new: The address of a pointer to the node to be added to the list.
+
+Return value:
+	None
+
+Description:
+	Adds the node ’new’ at the beginning of the list.
+*/
+void	ft_lstadd_front(t_list **lst, t_list *new)
+{
+	if (lst == NULL || new == NULL)
 	{
-		return (NULL);
+		return ;
 	}
-	node = lst;
-	while (node != NULL)
-	{
-		if (node->next == NULL)
-		{
-			return (node);
-		}
-		node = node->next;
-	}
-	return (NULL);
+	new->next = *lst;
+	*lst = new;
 }

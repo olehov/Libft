@@ -46,6 +46,23 @@ static size_t	ft_checkend(const char *s1, const char *set,
 	return (end);
 }
 
+/*
+Prototype:
+	char *ft_strtrim(char const *s1, char const *set);
+
+Parameters:
+	s1: The string to be trimmed.
+	
+	set: The reference set of characters to trim.
+
+Return value:
+	The trimmed string. NULL if the allocation fails.
+
+Description:
+	Allocates (with malloc(3)) and returns a copy of
+	’s1’ with the characters specified in ’set’ removed
+	from the beginning and the end of the string.
+*/
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*str;

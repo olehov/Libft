@@ -48,6 +48,21 @@ void	print(char buffer[], int i, int ismin, int fd)
 	}
 }
 
+/*
+Prototype:
+	void ft_putnbr_fd(int n, int fd);
+
+Parameters
+	n: The integer to output.
+
+	fd: The file descriptor on which to write.
+
+Return value:
+	None
+
+Description:
+Outputs the integer ’n’ to the given file descriptor.
+*/
 void	ft_putnbr_fd(int n, int fd)
 {
 	char	buffer[12];

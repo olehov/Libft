@@ -13,6 +13,21 @@
 #include "libft.h"
 #include <unistd.h>
 
+/*
+Prototype:
+	void ft_putstr_fd(char *s, int fd);
+
+Parameters:
+	s: The string to output.
+	
+	fd: The file descriptor on which to write.
+
+Return value:
+	None
+
+Description:
+	Outputs the string ’s’ to the given file descriptor.
+*/
 void	ft_putstr_fd(char *s, int fd)
 {
 	size_t	size;

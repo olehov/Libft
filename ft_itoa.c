@@ -14,6 +14,7 @@
 #include "libft.h"
 #include <stdio.h>
 #include <limits.h>
+#include <string.h>
 
 static int	ft_ismin(int *nb)
 {
@@ -34,7 +35,7 @@ static int	ft_size(int n, int sign)
 	{
 		return (1);
 	}
-	while (n % 10 != 0)
+	while (n != 0)
 	{
 		size++;
 		n /= 10;
@@ -58,7 +59,7 @@ static int	ft_sign(int n)
 	}
 }
 
-static void	ft_min(char *s, int size, int sign, int ismin)
+static char	*ft_min(char *s, int size, int sign, int ismin)
 {
 	if (sign == -1)
 	{
@@ -68,11 +69,24 @@ static void	ft_min(char *s, int size, int sign, int ismin)
 		}
 		s[0] = '-';
 	}
+	return (s);
 }
 
 /*
-Convert number from integer to character
-sign included
+Prototype:
+	char *ft_itoa(int n);
+
+Parameters:
+	n: the integer to convert.
+
+Return value:
+	The string representing the integer.
+	NULL if the allocation fails.
+
+Description:
+	Allocates (with malloc(3)) and returns a string
+	representing the integer received as an argument.
+	Negative numbers must be handled.
 */
 char	*ft_itoa(int n)
 {
@@ -92,28 +106,52 @@ char	*ft_itoa(int n)
 		return (NULL);
 	if (n == 0)
 		number[0] = n + '0';
-	while (n % 10 != 0)
+	while (n != 0)
 	{
 		number[--size] = (n % 10) + '0';
 		n /= 10;
 	}
-	ft_min(number, size2, sign, ismin);
 	number[size2] = '\0';
+	number = ft_min(number, size2, sign, ismin);
 	return (number);
 }
 
-int main()
-{
-    int num1 = -1;
-    int num2 = 1;
+// void test_case(int n, const char *expected) {
+//     char *result = ft_itoa(n);
+//     if (result == NULL) {
+//         printf("Test failed: Memory allocation failed for input %d\n", n);
+//         return;
+//     }
+//     if (strcmp(result, expected) == 0) {
+//         printf("Test passed: %d -> %s\n", n, result);
+//     } else {
+//         printf("Test failed: %d -> %s (exp: %s)\n", n, result, expected);
+//     }
+//     free(result); // Free memory allocated by ft_itoa
+// }
 
-    printf("Testing ft_itoa function:\n");
+// int main() {
+//     // Positive Numbers
+//     test_case(123, "123");
+//     test_case(0, "0");
+//     test_case(INT_MAX, "2147483647");
 
-    printf("Integer: %d\n", num1);
-    printf(" Result: %s\n", ft_itoa(num1));
+//     // Negative Numbers
+//     test_case(-456, "-456");
+//     test_case(INT_MIN, "-2147483648");
 
-    printf("Integer: %d\n", num2);
-    printf(" Result: %s\n", ft_itoa(num2));
+//     // Zero
+//     test_case(0, "0");
 
-    return 0;
-}
+//     // Edge Cases
+//     test_case(INT_MAX, "2147483647");
+//     test_case(INT_MIN, "-2147483648");
+//     test_case(INT_MIN + 1, "-2147483647");
+//     test_case(INT_MAX - 1, "2147483646");
+
+//     // Random Numbers
+//     test_case(987654321, "987654321");
+//     test_case(-987654321, "-987654321");
+
+//     return 0;
+// }
